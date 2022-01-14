@@ -1,47 +1,28 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  chakra,
   Box,
   Flex,
-  useColorModeValue,
-  SimpleGrid,
-  GridItem,
   Heading,
-  Text,
-  Stack,
   FormControl,
   FormLabel,
-  Input,
-  InputGroup,
-  InputLeftAddon,
   FormHelperText,
   Textarea,
-  Avatar,
-  Icon,
   Button,
-  VisuallyHidden,
-  Select,
-  Image,
-  Checkbox,
-  RadioGroup,
   ButtonGroup,
   IconButton,
-  Radio,
   useEditableControls,
   VStack,
-  FormErrorMessage,
   HStack,
 } from '@chakra-ui/react';
-import { FaTimes, FaUser } from 'react-icons/fa';
+
 import { Editable, EditableInput, EditablePreview } from '@chakra-ui/react';
 import { EditIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import useUser from '../hooks/data/useUser';
-import Dropzone, { useDropzone } from 'react-dropzone';
-import { useForm } from 'react-hook-form';
+
 import { toast } from 'react-toastify';
-import { Redirect, useHistory } from 'react-router-dom';
-import { getAlIdentity, removeAlAuth } from '../adapters/api';
-const EditableControl = (props) => {
+import { useHistory } from 'react-router-dom';
+import { getAlIdentity} from '../adapters/api';
+const EditableControl = () => {
   const {
     isEditing,
     getSubmitButtonProps,
@@ -106,13 +87,14 @@ export function Settings() {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+
             fontSize="md"
             value={username}
             onChange={onUsernameChange}
             selectAllOnFocus={false}
           >
             <EditablePreview />
-            <EditableInput mr="3" as="input" />
+            <EditableInput disabled dmr="3" as="input" />
             <EditableControl />
           </Editable>
         </FormControl>
@@ -138,6 +120,7 @@ export function Settings() {
         <FormControl>
           <FormLabel color="gray.400">About: </FormLabel>
           <Textarea
+            disabled
             value={description}
             onChange={onDescChange}
             placeholder="A short description about yourself."

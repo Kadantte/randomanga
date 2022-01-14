@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme';
 import { ColorModeSwitcher } from './components/ColorModeSwitcher';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -33,7 +33,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <ColorModeSwitcher />
       <Router>
-      <ScrollToTop />
+        <ScrollToTop />
         <Navigation />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -52,6 +52,9 @@ function App() {
           <Route exact path="/lists/create" component={Create} />
           <Route exact path="/lists/:id" component={List} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/how-it-works">
+            <Redirect to="/generator" />
+          </Route>
           <Route path="" component={NotFound} />
         </Switch>
         <Footer />
